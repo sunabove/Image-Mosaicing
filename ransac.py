@@ -94,6 +94,7 @@ class RANSAC:
 
         if isinstance(correspondence, list):
             correspondence = np.array(correspondence)
+        pass
 
         # # Minimum number of inliers to be accepted as valid set
         n_total = correspondence.shape[0]
@@ -110,8 +111,6 @@ class RANSAC:
         current_outliers = []
 
         while no_iter <= self.N:
-
-
             idx, n_idx = self.sample_n_datapts(n_total, self.n)
 
             sample_pts = correspondence[idx]
@@ -133,17 +132,18 @@ class RANSAC:
                 current_outliers = outliers
                 current_inliers_cnt = inlier_count
                 current_sample_pts = sample_pts
+            pass
 
             print(" Done {}/{}".format(no_iter, self.N))
 
             no_iter += 1
+        pass
 
         final_corr_points = np.concatenate((current_sample_pts, current_inliers), axis=0)
-        final_H = calculate_homography(in_pts=final_corr_points[:, 2:],
-                                                    out_pts=final_corr_points[:, 0:2])
+        final_H = calculate_homography(in_pts=final_corr_points[:, 2:], out_pts=final_corr_points[:, 0:2])
 
         return current_inliers_cnt, current_inliers, current_outliers, current_sample_pts, final_H
-
+    pass
 
     def draw_lines(self, corr_pts, img_1, img_2, save_path, line_color, pt_color):
         """

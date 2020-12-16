@@ -1,7 +1,11 @@
+import inspect
 from ransac import *
 from match_features import *
 from scipy import optimize
 from optimize_fcn import *
+
+import logging as log
+log.basicConfig( format='%(asctime)s, %(levelname)-8s [%(filename)s:%(lineno)04d] %(message)s', datefmt='%Y-%m-%d:%H:%M:%S', level=log.INFO )
 
 
 class GenerateMosaic:
@@ -185,9 +189,25 @@ class GenerateMosaic:
 pass
 
 if __name__ == "__main__":
-    parent_folder = "./input/p3"
-    img_name_list = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
 
-    obj = GenerateMosaic(parent_folder=parent_folder , img_name_list=img_name_list)
+    import os
+    from glob import glob
+
+    folder = "./input/p5"
+
+    files = []
+    for ext in ['*.gif', '*.png', '*.jpg']:
+        sub_list = glob(os.path.join(folder, ext))
+
+        for i in range( len(sub_list) ) :
+            sub_list[i] = sub_list[i].replace( "\\", "/" ).split( "/")[-1]
+        pass
+
+        files.extend( sub_list )
+    pass
+
+    log.info( f"{files}")
+
+    obj = GenerateMosaic(parent_folder=folder , img_name_list=files)
     obj.mosaic()
 pass
