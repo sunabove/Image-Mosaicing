@@ -193,7 +193,7 @@ if __name__ == "__main__":
     import os
     from glob import glob
 
-    folder = "./input/p5"
+    folder = "./input/p6"
 
     files = []
     for ext in ['*.gif', '*.png', '*.jpg']:
