@@ -94,8 +94,9 @@ def fit_image_in_target_space(img_src, img_dst, mask, H, offset=np.array([0, 0, 
     #      if (0 <= out_src[i,0] < w-1) and (0 <= out_src[i,1] < h-1):
     #          img_dst[pts[i,1], pts[i,0], :] = get_pixel_val(out_src[i], img_src)
 
-
     return img_dst
+
+pass
 
 def get_pixel_val(img_dst, img_src, pts, out_src, offset):
     """
@@ -156,6 +157,7 @@ def get_pixel_val(img_dst, img_src, pts, out_src, offset):
                                      img_src[br[:,0], br[:,1], :] * weight[:, 3:4])/ np.sum(weight, axis=1, keepdims=True)
 
     return img_dst
+
 pass
 
 def build_sys_equations(in_pts, out_pts):
@@ -267,7 +269,6 @@ def run_main(img_src_path, img_dst_path, out_pts, include_perp=False, save_fig='
 pass
 
 def plot_req_images(img_src, img_dst, mask, figName):
-
     plt.figure()
     plt.suptitle("To fit src_img to dest_img mask region")
 

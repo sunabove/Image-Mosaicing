@@ -16,8 +16,7 @@ class GenerateMosaic:
         # for id, img_name in enumerate(img_name_list):
         #     img_path = os.path.join(parent_fldr, img_name)
         #     self.img_all[id+1] = cv2.cvtColor(cv2.imread(img_path), cv2.COLOR_BGR2RGB)
-
-
+    pass
 
     def mosaic(self):
 
@@ -56,30 +55,12 @@ class GenerateMosaic:
 
             H_all[key] = LM_sol.x.reshape(3, 3)
             H_all[key] = H_all[key] / H_all[key][-1, -1]
-
-
-            # sol = optimize.least_squares(fun_LM_homography, final_H.flatten(), args=(x[:, 0:2], x[:, 2:]), method='lm', jac=jac_LM_homography,
-            #                              xtol=1e-24, ftol=1e-24)
-            #                     # options={'xtol':1e-24})
-            # res = fun_LM_homography(sol.x, *(x[:, 0:2], x[:, 2:]))
-            # cost_sc = np.dot(res.T, res)
-
-            # print("scipy solution: {}, {}, status:{}, cost={}".format(sol.x, sol.message, sol.status, cost_sc))
-            # print('==============')
-            # print("LM_sol: {}, {}, update_iter:{}, cnt: {}, cost: {}".format(LM_sol.x, LM_sol.message, LM_sol.update_iter, LM_sol.nint, LM_sol.min_cost))
-            # print('==============')
-            # print("initial val : {}".format(final_H.flatten()))
-
-            # Hij -> pts_in_img_j = Hij * pts_in_img_i
+        pass
 
         H_all = self.compute_H_wrt_middle_img(H_all)
 
         self.stitch(H_all, siftmatch_obj.result_fldr)
-
-
-
-
-
+    pass
 
     def stitch(self, H_all, result_fldr):
 
@@ -113,8 +94,6 @@ class GenerateMosaic:
         min_crd_canvas = np.array([np.inf, np.inf, np.inf])
         max_crd_canvas = np.array([-np.inf, -np.inf, -np.inf])
 
-
-
         for i in range(len(self.img_name_list)):
             key = "H{}{}".format(i, self.middle_id)
             H = H_all[key]
@@ -122,6 +101,7 @@ class GenerateMosaic:
 
             min_crd_canvas = np.minimum(min_crd, min_crd_canvas)
             max_crd_canvas = np.maximum(max_crd, max_crd_canvas)
+        pass
 
         width_canvas = np.ceil(max_crd_canvas - min_crd_canvas)[0] + 1
         height_canvas = np.ceil(max_crd_canvas - min_crd_canvas)[1] + 1
@@ -153,7 +133,6 @@ class GenerateMosaic:
 
     def compute_H_wrt_middle_img(self, H_all):
 
-
         # Hij is pts_in_img_j = Hij * pts_in_img_i
         # If num of images are 5, we have H01, H12, H23, H34 i.e
         # Pts_in_img_1 = H01 * pts_in_img_0
@@ -165,7 +144,6 @@ class GenerateMosaic:
 
         # H02 = H12 * H01
         # H12 = H12
-
 
         num_imgs = len(H_all)+1
 

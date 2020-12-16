@@ -3,14 +3,15 @@ import cv2
 import os
 
 
-class SiftKpDesc():
+class SiftKpDesc :
     def __init__(self, kp, desc):
         # List of keypoints in (x,y) crd -> N x 2
         self.kp = kp
 
         # List of Descriptors at keypoints : N x 128
         self.desc = desc
-
+    pass
+pass
 
 class SiftMatching:
 
@@ -23,9 +24,7 @@ class SiftMatching:
     _radius = 5
     _circ_thickness = 2
 
-
     def __init__(self, img_1_path, img_2_path, results_fldr='', nfeatures=2000, gamma=0.8):
-
         fname_1 = os.path.basename(img_1_path)
         fname_2 = os.path.basename(img_2_path)
 
@@ -44,13 +43,13 @@ class SiftMatching:
 
         self.nfeatures = nfeatures
         self.gamma = gamma
-
+    pass
 
     def read_image(self, img_path):
-
         img_bgr = cv2.imread(img_path, cv2.IMREAD_COLOR)
 
         return img_bgr
+    pass
 
 
 
@@ -58,7 +57,7 @@ class SiftMatching:
 
         img_gray = cv2.cvtColor(img_bgr, cv2.COLOR_BGR2GRAY)
 
-        sift_obj = cv2.xfeatures2d.SIFT_create(nfeatures)
+        sift_obj = cv2.SIFT_create(nfeatures)
 
         # kp_list_obj is a list of "KeyPoint" objects with location stored as tuple in "pt" attribute
         kp_list_obj, desc = sift_obj.detectAndCompute(image=img_gray, mask=None)
@@ -66,7 +65,7 @@ class SiftMatching:
         kp = [x.pt for x in kp_list_obj]
 
         return SiftKpDesc(kp, desc)
-
+    pass
 
     def match_features(self, sift_kp_desc_obj1, sift_kp_desc_obj2, gamma=0.8):
         correspondence = []  # list of lists of [x1, y1, x2, y2]
@@ -81,7 +80,7 @@ class SiftMatching:
                 correspondence.append([*sift_kp_desc_obj1.kp[i], *sift_kp_desc_obj2.kp[idx[0]]])
 
         return correspondence
-
+    pass
 
     def draw_correspondence(self, correspondence, img_1, img_2):
 
@@ -110,10 +109,11 @@ class SiftMatching:
 
             cv2.line(img_stack, (x1_d, y1_d), (x2_d, y2_d), color=self._CYAN,
                      thickness=self._line_thickness)
+        pass
 
         fname = os.path.join(self.result_fldr, self.prefix + '_sift_corr.jpg')
         cv2.imwrite(fname, img_stack)
-
+    pass
 
     def run(self):
 
