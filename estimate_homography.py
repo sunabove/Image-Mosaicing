@@ -155,10 +155,8 @@ def get_pixel_val(img_dst, img_src, pts, out_src, offset):
                                      img_src[bl[:,0], bl[:,1], :] * weight[:, 2:3] + \
                                      img_src[br[:,0], br[:,1], :] * weight[:, 3:4])/ np.sum(weight, axis=1, keepdims=True)
 
-
     return img_dst
-
-
+pass
 
 def build_sys_equations(in_pts, out_pts):
     """
@@ -184,7 +182,7 @@ def build_sys_equations(in_pts, out_pts):
         i = i+2
 
     return mat_A, mat_b
-
+pass
 
 def get_perp_bisectors(in_pts, out_pts):
 
@@ -205,9 +203,7 @@ def get_perp_bisectors(in_pts, out_pts):
     out_pts = out_pts.astype(np.int64)
 
     return in_pts, out_pts
-
-
-
+pass
 
 def run_main(img_src_path, img_dst_path, out_pts, include_perp=False, save_fig='result.jpg'):
     """
@@ -268,9 +264,7 @@ def run_main(img_src_path, img_dst_path, out_pts, include_perp=False, save_fig='
     plt.savefig(os.path.join(res_dir, 'result_' + fname))
 
     plt.show()
-
-
-
+pass
 
 def plot_req_images(img_src, img_dst, mask, figName):
 
@@ -299,10 +293,7 @@ def plot_req_images(img_src, img_dst, mask, figName):
     plt.savefig(figName)
 
     plt.show()
-
-
-
-
+pass
 
 if __name__ == "__main__":
 
@@ -328,3 +319,5 @@ if __name__ == "__main__":
     out_pts = [[929, 737], [2799, 390], [2849, 2222], [907, 2079]]  # PQSR
 
     run_main(img_src_path, img_dst_path, out_pts, False)
+
+pass

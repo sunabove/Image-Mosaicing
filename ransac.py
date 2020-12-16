@@ -178,6 +178,9 @@ class RANSAC:
                      thickness=self._line_thickness)
 
         cv2.imwrite(save_path, img_stack)
+    pass
+
+pass
 
 
 

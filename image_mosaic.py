@@ -100,14 +100,8 @@ class GenerateMosaic:
 
             result_path = os.path.join(result_fldr, 'panorama_{}.jpg'.format(i))
             cv2.imwrite(result_path, canvas_img[:, :, (2, 1, 0)])
-
-
-
-
-
-
-
-
+        pass
+    pass
 
     def get_blank_canvas(self, H_all):
 
@@ -140,12 +134,7 @@ class GenerateMosaic:
         mask = np.ones((int(height_canvas), int(width_canvas)))
 
         return canvas_img, mask, offset
-
-
-
-
-
-
+    pass
 
     def compute_extent(self, H, img_w, img_h):
 
@@ -159,6 +148,7 @@ class GenerateMosaic:
         min_crd = np.amin(canvas_crd_corners.T, axis=0)  # [x, y, z]
         max_crd= np.amax(canvas_crd_corners.T, axis=0)
         return min_crd, max_crd
+    pass
 
 
     def compute_H_wrt_middle_img(self, H_all):
@@ -212,11 +202,14 @@ class GenerateMosaic:
 
 
         return H_all
+    pass
 
+pass
 
 if __name__ == "__main__":
-    parent_folder = "/Users/aartighatkesar/Documents/Image-Mosaicing/input/p3"
+    parent_folder = "./input/p3"
     img_name_list = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg"]
 
     obj = GenerateMosaic(parent_folder=parent_folder , img_name_list=img_name_list)
     obj.mosaic()
+pass

@@ -125,18 +125,18 @@ class SiftMatching:
         self.draw_correspondence(correspondence, self.img_1_bgr, self.img_2_bgr)
 
         return correspondence
+    pass
+
+pass
 
 
 
 if __name__ == "__main__":
-    img_1_path = "/Users/aartighatkesar/Documents/Image-Mosaicing/input/p3/4.jpg"
-    img_2_path = "/Users/aartighatkesar/Documents/Image-Mosaicing/input/p3/5.jpg"
+    
+    img_1_path = "./input/p3/4.jpg"
+    img_2_path = "./input/p3/5.jpg"
 
     siftmatch_obj = SiftMatching(img_1_path, img_2_path, results_fldr='', nfeatures=2000, gamma=0.6)
     siftmatch_obj.run()
 
-
-
-
-
-
+pass
